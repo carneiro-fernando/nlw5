@@ -11,10 +11,10 @@ interface IMessageCreate {
 
 class MessagesService {
 
-    private messagesRepository : Repository <Message>;
+    private messagesRepository: Repository<Message>;
 
-    constructor(){
-        this.messagesRepository =getCustomRepository(MessagesRepository);
+    constructor() {
+        this.messagesRepository = getCustomRepository(MessagesRepository);
     }
 
     async create({ admin_id, text, user_id }: IMessageCreate) {
@@ -30,11 +30,11 @@ class MessagesService {
     }
 
     async listByUser(user_id: string) {
-        const list = await this.messagesRepository.find({ user_id })
-        /** Poderia fazer também no lugar de ({user_id}):
-         *### where: {user_id},
-         *### relations: ["user"],
-         *Isso traria a informação do usuário relacionada com a mensagem**/
+        const list = await this.messagesRepository.find({
+            where: { user_id },
+            relations: ["user"],
+        });
+        
         return list;
     }
 }
