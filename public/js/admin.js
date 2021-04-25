@@ -84,7 +84,7 @@ function sendMessage(id) {
   createDiv.innerHTML = `Atendente: <span>${params.text}</span>`;
   createDiv.innerHTML += `<span class="admin_date>${dayjs().format(
     "DD/MM/YYYY HH:mm:ss"
-  )}`;
+  )}`; 
 
   divMessages.appendChild(createDiv);
 
